@@ -87,9 +87,9 @@ int opcion(){
     cout<<" --   ¿QUE DESEA HACER?  --"<<endl;
     cout<<"Presione 0 para Decodificar o 1 para codificar ";cin>>eleccion;
 
-    while(eleccion!=1 && eleccion!=0){                                  //MANEJO DE EXCEPCIONES
+    while((eleccion!=1 && eleccion!=0) ||( eleccion>48 || eleccion<=57)){                                  //MANEJO DE EXCEPCIONES
         cout<<"SOLO PUEDE ELEGIR ENTRE 1 O 2 "<<endl;                   //Solo discrimina entre numeros
-        cout<<" Ingrese de nuevo el numero de eleccion  --> "<<endl;
+        cout<<" Ingrese de nuevo el numero de eleccion  --> ";
         cin>>eleccion;
     }
     return eleccion;
@@ -151,6 +151,7 @@ string binario(string palabra){  //Funcion tipo string que retorna un string
 
 
 string codone(string oracion_Binaria,int n){
+
 
     string cadena_Codificada=""; //variable tipo string que almacena la cadena resultante de aplicar
                                  //las condiciones de codificacion a oracion_Binaria(cadena en ASCII)
@@ -266,7 +267,7 @@ if((tamano%n)==0){           //CONDICIONAL EN CASO DE QUE LA CADENA SE PUEDA PAR
 
             }
 
-
+          seguir+=1;
         }
 
 
@@ -593,7 +594,7 @@ if(lon%n==0){
 
 
                 }
-
+                seguir+=1;
 
             }
 
@@ -789,7 +790,6 @@ string decotwo(string cadena_codificada, int n){
         }
 
          cadena_Decod+=cadena_codificada[tamano-modulo];
-
 
     return cadena_Decod;
 
