@@ -18,8 +18,8 @@ int semilla();  //Esta funcion de tipo entero int pide al usuario un numero ente
                 //y lo retorna (n)
 
 
-int metodo();   //Esta funcion de tipo entero pide al usuario un numero entero 1 o 2, el cual representa el
-                //metodo de codificacion
+int metodo(); //Esta funcion de tipo entero pide al usuario un numero entero 1 o 2, el cual representa el
+                          //metodo de codificacion
 
 
 string codone(string oracion_Binaria,int n);
@@ -84,10 +84,13 @@ int opcion(){
 
     int eleccion=0;
 
-    cout<<" --   ¿QUE DESEA HACER?  --"<<endl;
+    cout<<"            --<<   QUE DESEA HACER  >>--       "<<endl;
     cout<<"Presione 0 para Decodificar o 1 para codificar ";cin>>eleccion;
+    cout<<endl;
 
-    while((eleccion!=1 && eleccion!=0) ||( eleccion>48 || eleccion<=57)){                                  //MANEJO DE EXCEPCIONES
+    while(eleccion!=1 && eleccion!=0){                                  //MANEJO DE EXCEPCIONES
+
+        cout<<" - - - - - - - - - - - - - - - - - - - - - - "<<endl;
         cout<<"SOLO PUEDE ELEGIR ENTRE 1 O 2 "<<endl;                   //Solo discrimina entre numeros
         cout<<" Ingrese de nuevo el numero de eleccion  --> ";
         cin>>eleccion;
@@ -116,8 +119,8 @@ int metodo(){
 
     int metodo=0;
 
-    cout<<" -- ELIGA EL METODO DE CODIFICACIÓN --"<<endl;
-    cout<<"Presione 1 o 2 : ";cin>>metodo;
+    cout<<" --  ELIGA EL METODO DE CODIFICACION O DECODIFICACION  --"<<endl;
+    cout<<"     Presione 1 o 2   : ";cin>>metodo;
 
     while(metodo!=1 && metodo!=2){                                  //MANEJO DE EXCEPCIONES
         cout<<"SOLO PUEDE ELEGIR ENTRE 1 O 2 "<<endl;
@@ -336,6 +339,47 @@ else{                       //CONDICIONAL EN CASO DE QUE LA CADENA NO SE PUEDA
                     }}
                seguir+=1;
                 }
+
+        else{                                      //4.Cantidad de unos mayor a
+            ceros=0;unos=0;                        //cantidad de ceros:
+            for(int j=1;j<=n;j++){                 //Se invierte cada 3 bits
+               if(j%3==0){                         //j es la posicion, en este caso,
+                                                   //indice+1,por lo cual cuando j%3=0
+                                                                //esta ubicandose cada 3 bits
+                    if(oracion_Binaria[(seguir*n)+(j-1)]=='0'){ //Ejemplo:
+                        cadena_Codificada+='1';                 //[0][1][2][3][4][5]->indices
+                                                             //j = 1, 2, 3, 4, 5, 6
+                        ceros+=1;                               //los bits que deben cambiarse
+                     }                                          //respresentan los divisores
+                                                                //j de 3,es decir,
+                    else{                                       //los elementos con indices
+                        cadena_Codificada+='0';                 //2 y 5
+                        unos+=1;
+                     }
+
+                  }
+
+                else{
+                   if(oracion_Binaria[(seguir*n)+(j-1)]=='0'){
+                       cadena_Codificada+='0';
+                       ceros+=1;
+                   }
+
+                   else{
+                       cadena_Codificada+='1';
+                       unos+=1;
+                   }
+
+
+                }
+
+
+            }
+
+          seguir+=1;
+        }
+
+
 
 
             }
@@ -665,6 +709,45 @@ else{                       //CONDICIONAL EN CASO DE QUE LA CADENA NO SE PUEDA
                         }}
                    seguir+=1;
                     }
+
+            else{                                      //4.Cantidad de unos mayor a
+                ceros=0;unos=0;                        //cantidad de ceros:
+                for(int j=1;j<=n;j++){                 //Se invierte cada 3 bits
+                   if(j%3==0){                         //j es la posicion, en este caso,
+                                                       //indice+1,por lo cual cuando j%3=0
+                                                                    //esta ubicandose cada 3 bits
+                        if(cadena_codificada[(seguir*n)+(j-1)]=='0'){ //Ejemplo:
+                            cadena_Decod+='1';                 //[0][1][2][3][4][5]->indices
+                                                                 //j = 1, 2, 3, 4, 5, 6
+                            unos+=1;                               //los bits que deben cambiarse
+                         }                                          //respresentan los divisores
+                                                                    //j de 3,es decir,
+                        else{                                       //los elementos con indices
+                            cadena_Decod+='0';                 //2 y 5
+                            ceros+=1;
+                         }
+
+                      }
+
+                    else{
+                       if(cadena_codificada[(seguir*n)+(j-1)]=='0'){
+                           cadena_Decod+='0';
+                           ceros+=1;
+                       }
+
+                       else{
+                           cadena_Decod+='1';
+                           unos+=1;
+                       }
+
+
+                     }
+
+
+                }
+                seguir+=1;
+
+            }
 
 
                 }
